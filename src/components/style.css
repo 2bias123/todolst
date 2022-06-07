@@ -1,42 +1,17 @@
-.App{
-    display: flex;
-    justify-content: center;
-    text-align: center;   
-    width: 100%;
-}
-
-.inputfields{
-    display: flex;
-    flex-direction: column;
+.App {
+    display:grid;
+    place-items:center;
     align-items: center;
-    justify-content: space-around;
+    align-content: center;
     width: 100%;
-}
+    }
 
-.inputfields input{
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    /* width: 100%; */
-}
+.todo__list{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    border: 1px solid lightgray;
+    margin-bottom: 10px !important;
+    }
 
-.inputfields button{
-    appearance:none;
-    -webkit-appearance:none;
-    
-    padding:10px;
-    border:none;
-    background-color:#3F51B5;
-    color:#fff;
-    font-weight:600;
-    border-radius:10px;
-    width:100%;
-}
-
-.TodoBox{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    /* flex-basis: content; */
-
-}

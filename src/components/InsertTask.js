@@ -1,33 +1,51 @@
-import React, {useState} from 'react'
-import db from './firebase'
-import Tasks from './GetDatabaseTasks'
+import React, {useState,useEffect} from 'react'
 import './style.css'
+import {TextField , Button } from '@mui/material';
+import GetTaskLst from './GetTasks';
+import db  from './firebase.js';
+import { addDoc, collection , onSnapshot, query, serverTimestamp,orderBy } from 'firebase/firestore';
 
+
+const q = query(collection(db,'todos'),orderBy('timestamp','desc'))
 export default function TodoCard(){
-    const[taskTitle,setTaskTitle] = useState('')
-    const[taskDescription,setDescription]=useState('')
+    const [todos,setTodos]=useState([]);
+    const [titleInput, setTitleInput]=useState('');
+    const [descriptionInput,setDescriptionInput] = useState('');
 
-    const taskInfo = {
-        Title : taskTitle,
-        Discription : taskDescription,
-        Finished : false
+    useEffect(()=>{
+        onSnapshot(q,(snapshot)=>{
+            setTodos(snapshot.docs.map(doc=>({
+                id : doc.id,
+                item : doc.data()
+            })
+                ))
+        })
+    },[titleInput])
+
+    const addTask = (e) => {
+        e.preventDefault()
+        addDoc(collection(db,'todos'),{
+            todoTitle : titleInput,
+            todoDescription : descriptionInput,
+            timestamp: serverTimestamp()
+        })
+        setTitleInput('')
+        setDescriptionInput('')
     }
 
-    
-    const handleClick = () =>{
-        db.collection('Todo').doc('Task1').set({taskInfo})
-        document.getElementById('title').value = ''
-        document.getElementById('disc').value = ''
-    }
-    
     return(
         <div>
             <div className="CardBox">
-                <div className="inputfields">
-                    <input id='title' type='text' onChange={(e)=>setTaskTitle(e.target.value)} placeholder='Tasktitle' required/>
-                    <input id='disc' type={'text'} onChange={(e)=>setDescription(e.target.value)} placeholder='Task description'/>
-                    <button onClick={()=> handleClick()}>Submit</button>
-                </div>
+                <form>
+                    <TextField id="outlined-basic" label="Add Todo" variant="outlined" style={{margin:"0px 5px"}} size="small" 
+                    onChange={(e)=>setTitleInput(e.target.value)} value={titleInput} />
+                    <TextField id="outlined-basic2" label="Add Description" variant="outlined" style={{margin:"0px 5px"}} size="small" 
+                    onChange={(e)=>setDescriptionInput(e.target.value)} value={descriptionInput}/>
+                    <Button variant="contained" color="primary" onClick={addTask}>Add Todo</Button>
+                </form>
+                <ul>
+                    {todos.map(item=> <GetTaskLst key={item.id} arr={item} />)}
+                </ul>
             </div>
         </div>
     )
