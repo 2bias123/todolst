@@ -9,6 +9,7 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;   
+    width: 100%;
     }
 
 .todo__list{
@@ -19,5 +20,9 @@ body {
     border: 1px solid lightgray;
     margin-bottom: 10px !important;
     }
+
+.CardBox h1{
+    color: #42a5f5;
+}
 
 
