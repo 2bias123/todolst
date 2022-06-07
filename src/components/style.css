@@ -1,25 +1,26 @@
 body {
     display: flex;
+    justify-content: center;
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px;
+    width: 100%;
   }
 
 .App {
-    display: flex;
-    justify-content: center;
-    text-align: center;   
+    text-align: center;  
     width: 100%;
     }
 
 .todo__list{
     display:flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    width: 800px;
+    /* justify-content: space-around; */
     border: 1px solid lightgray;
     margin-bottom: 10px !important;
     }
+
 
 .CardBox h1{
     color: #42a5f5;
