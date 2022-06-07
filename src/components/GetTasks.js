@@ -9,7 +9,7 @@ const GetTaskLst=({arr})=>{
             <ListItem>
                 <ListItemAvatar />
                 <ListItemText primary={arr.item.todoTitle} secondary={arr.item.todoDescription} />
-                </ListItem>
+            </ListItem>
             <DeleteIcon fontSize="large" style={{opacity:0.7}} onClick={() => {deleteDoc(doc(db,'todos',arr.id))}} />
         </List>
     )

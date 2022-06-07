@@ -1,9 +1,14 @@
+body {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+  }
+
 .App {
-    display:grid;
-    place-items:center;
-    align-items: center;
-    align-content: center;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;   
     }
 
 .todo__list{
@@ -14,4 +19,5 @@
     border: 1px solid lightgray;
     margin-bottom: 10px !important;
     }
+
 
