@@ -1,23 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import DisplayTasks from "./components/DisplayTasks";
+import Tasks from "./components/GetDatabaseTasks";
+import TodoCard from "./components/InsertTask";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     {/* <TodoCard></TodoCard> */}
+     <DisplayTasks TaskData={Tasks()}></DisplayTasks>
     </div>
   );
 }
